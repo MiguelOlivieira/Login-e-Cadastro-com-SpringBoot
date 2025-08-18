@@ -5,6 +5,7 @@ import br.appLogin.appLogin.model.Usuario;
 import br.appLogin.appLogin.repository.UsuarioRepository;
 import br.appLogin.appLogin.service.CookieService;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
@@ -36,7 +37,8 @@ public class LoginController {
     }
 
     @GetMapping("/")
-    public String paginaHome() {
+    public String paginaHome(Model model,  HttpServletRequest request) throws UnsupportedEncodingException {
+        model.addAttribute("nome",  CookieService.getCookie(request, "nomeUsuario"));
         return "index";
     }
 
@@ -53,6 +55,14 @@ public class LoginController {
         model.addAttribute("erro", "Usuario Inválido");
         return("telaLogin");
     }
+
+
+    @GetMapping("/sair")
+    public String sair(HttpServletResponse response) throws UnsupportedEncodingException {
+            CookieService.setCookie(response, "usuarioId", "",0);
+
+            return "telaLogin";
+        }
 
 
 

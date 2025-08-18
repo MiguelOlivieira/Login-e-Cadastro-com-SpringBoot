@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TokuWeb</title>
     <link rel="icon" href="/IMG/logoToku.png">
-    <link rel="stylesheet" href="/CSS/style.css">
-    <link rel="stylesheet" href="/CSS/home.css">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/home.css}">
+
 </head>
 
 <body>
@@ -36,14 +37,14 @@
                 <li>
 
                     <details>
-                        <summary class="entrar">
+                        <summary class="menu">
                             <img src="/IMG/iconPerson.png" alt="Ícone de Pessoa" width="25px" height="25px"
                                 class="iconeP">
-                            ENTRAR
+                            MENU
                         </summary>
                         <ul class="MenuEscondido">
-                            <li><a href="/HTML/internas/Login.html">LOGIN</a></li>
-                            <li><a href="/HTML/internas/Cadastro.html">CADASTRO</a></li>
+                            <li><a href="/sair">Sair</a></li>
+
                         </ul>
                     </details>
 
@@ -52,6 +53,7 @@
         </nav>
 
         <div>
+            <h3>Bem vindo(a), <span th:text="${nome}"></span></h3>
             <img src="/IMG/TokuHeader.jpg" alt="Imagem Header da Pagina" class="ImagemHeader">
             <h1 class="TituloHeader"> Conheça nosso catálogo de <span>TOKUSATSU</span></h1>
         </div>
