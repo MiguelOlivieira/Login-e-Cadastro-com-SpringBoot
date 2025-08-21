@@ -1,0 +1,68 @@
+.ImagemHeader {
+    margin: 5%;
+    width: 90%;
+}
+
+.TituloHeader {
+    background-color: aliceblue;
+    position: relative;
+    padding-left: 30px;
+    bottom: 190px;
+    left: 95px;
+    width: 1728px;
+}
+
+span {
+    color: rgb(255, 58, 58);
+}
+
+h2 {
+    margin-left: 96px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: linear-gradient(to right, rgb(252, 149, 149), rgba(255, 0, 0, 0));
+    border-radius: 10px;
+    color: white;
+}
+
+.Text {
+    max-width: 50%;
+    margin-left: 480px;
+    margin-bottom: 40px;
+}
+
+.TextTitle {
+    margin-left: 480px;
+    margin-bottom: 20px;
+    color: rgb(252, 149, 149);
+    font-size: 30px;
+}
+
+video {
+    margin-left: 600px;
+    width: 800px;
+    height: 580px;
+    border: 5px solid black;
+    border-radius: 30px;
+    background-color: rgba(252, 149, 149, 0.774);
+    margin-bottom: 40px;
+}
+
+.container-imagem {
+    position: relative;
+    display: inline-block;
+}
+
+.manga {
+    margin-bottom: 40px;
+    display: flex;
+    gap: 60px;
+}
+
+.catalogoLancamento {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    position: relative;
+    left: 30px;
+}

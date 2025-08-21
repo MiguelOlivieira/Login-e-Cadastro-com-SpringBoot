@@ -6,18 +6,17 @@ import br.appLogin.appLogin.repository.UsuarioRepository;
 import br.appLogin.appLogin.service.CookieService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 @Controller
 public class LoginController {
@@ -29,6 +28,7 @@ public class LoginController {
     public LoginController(UsuarioRepository ur){
         this.ur = ur;
     }
+
 
 
     @GetMapping("/login") //identifica o /login no endereço e retorna pagina de login (telaLogin.html)
