@@ -5,6 +5,7 @@ import br.appLogin.appLogin.repository.UsuarioRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class UsuarioApiController {
 
     @Autowired
     private UsuarioRepository ur;
+
 
     @GetMapping("/listarTodos")
     public ResponseEntity<List<Usuario>>listarTodos() {

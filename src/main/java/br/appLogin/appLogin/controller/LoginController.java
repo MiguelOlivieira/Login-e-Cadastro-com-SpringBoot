@@ -7,6 +7,7 @@ import br.appLogin.appLogin.service.CookieService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
@@ -23,6 +24,8 @@ public class LoginController {
 
     private UsuarioRepository ur;
 
+    @Autowired
+    private PasswordEncoder encoder;
 
     @Autowired
     public LoginController(UsuarioRepository ur){
@@ -48,7 +51,6 @@ public class LoginController {
         if(usuarioLogado!=null){
             CookieService.setCookie(response, "usuarioId", String.valueOf(usuarioLogado.getId()), 10000);
             CookieService.setCookie(response, "nomeUsuario", String.valueOf(usuarioLogado.getNome()), 10000);
-
             return "redirect:/";
         }
 
@@ -67,7 +69,9 @@ public class LoginController {
 
 
     @GetMapping("/cadastro")
-    public String cadastro() {
+    public String cadastro(Model model) {
+        model.addAttribute("usuario", new Usuario());
+
         return "telaCadastro";
     }
 
@@ -77,6 +81,8 @@ public class LoginController {
         if(result.hasErrors()) {
             return "redirect:/cadastro";
         }
+        usuario.setSenha(encoder.encode(usuario.getSenha()));
+
         ur.save(usuario);
 
         return "redirect:/login";

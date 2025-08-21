@@ -65,7 +65,7 @@
     <h1 id="title">Cadastrar-se</h1>
     <p>Crie sua conta para começar</p>
 
-    <form action="#" method="post">
+    <form th:action="@{/cadastro}"  th:object="${usuario}" method="post">
       <div class="field">
         <label for="nome">Nome</label>
         <input id="nome" name="nome" type="text" placeholder="Seu nome completo" required />
@@ -78,7 +78,7 @@
 
       <div class="field">
         <label for="senha">Senha</label>
-        <input id="senha" name="senha" type="password" placeholder="Crie uma senha" required />
+        <input id="senha" name="senha" type="password" placeholder="Crie uma senha"  th:field="*{senha}" required />
       </div>
 
       <div class="field">
