@@ -21,8 +21,8 @@ public class LoginInterceptorAppConfig implements WebMvcConfigurer {
                 "/logar",
                 "/error",
                 "/cadastro",
-                "/api/usuarios/listarTodos",
-                "/api/usuarios/buscarUsuario/{id}"
+                "/api/usuarios/**"
+
         );
     }
 

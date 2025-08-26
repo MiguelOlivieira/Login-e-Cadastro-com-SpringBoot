@@ -69,7 +69,7 @@
     <h1 id="title">Entrar</h1>
     <p>Faça login para continuar</p>
 
-    <form action="/logar" method="post">
+    <form th:action="@{/logar}" method="post">
       <div class="field">
         <label for="email">E-mail</label>
         <input id="email" name="email" type="email" placeholder="email@dominio.com" required />

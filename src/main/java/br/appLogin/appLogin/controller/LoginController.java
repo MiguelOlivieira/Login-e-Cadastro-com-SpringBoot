@@ -6,6 +6,7 @@ import br.appLogin.appLogin.repository.UsuarioRepository;
 import br.appLogin.appLogin.service.CookieService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class LoginController {
@@ -46,11 +48,28 @@ public class LoginController {
     }
 
     @PostMapping("/logar")
-    public String loginUsuario(Usuario usuario, Model model, HttpServletResponse response) throws UnsupportedEncodingException {
-        Usuario usuarioLogado = this.ur.login(usuario.getEmail(), usuario.getSenha());
-        if(usuarioLogado!=null){
-            CookieService.setCookie(response, "usuarioId", String.valueOf(usuarioLogado.getId()), 10000);
-            CookieService.setCookie(response, "nomeUsuario", String.valueOf(usuarioLogado.getNome()), 10000);
+    public String loginUsuario(@RequestParam String senha,
+                               @RequestParam String email,
+                               Model model,
+                               HttpServletResponse response
+                               ) throws UnsupportedEncodingException {
+
+
+        Optional<Usuario> optUsuario = ur.findByEmail(email);
+
+        if(optUsuario.isEmpty()) {
+            return("telaLogin");
+        }
+
+        Usuario usuario = optUsuario.get();
+
+
+        boolean valid = encoder.matches(senha, usuario.getSenha());
+
+
+        if(valid){
+            CookieService.setCookie(response, "usuarioId", String.valueOf(usuario.getId()), 10000);
+            CookieService.setCookie(response, "nomeUsuario", String.valueOf(usuario.getNome()), 10000);
             return "redirect:/";
         }
 

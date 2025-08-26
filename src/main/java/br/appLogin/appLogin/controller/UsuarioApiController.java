@@ -16,8 +16,15 @@ import java.util.Optional;
 @RequestMapping("/api/usuarios")
 public class UsuarioApiController {
 
+
+    private final UsuarioRepository ur;
+    private final PasswordEncoder encoder;
+
     @Autowired
-    private UsuarioRepository ur;
+    public UsuarioApiController(UsuarioRepository ur, PasswordEncoder encoder ){
+        this.ur = ur;
+        this.encoder = encoder;
+    }
 
 
     @GetMapping("/listarTodos")
@@ -41,6 +48,28 @@ public class UsuarioApiController {
         System.out.println("Método teste foi chamado!");
         return "API está funcionando";
     }
+
+    /*@GetMapping("/validarSenha")
+    public ResponseEntity<Boolean> validarSenha(@RequestParam String email,
+                                                @RequestParam String senha) {
+
+        Optional<Usuario> optUsuario = ur.findByEmail(email);
+
+        if(optUsuario.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(false);
+        }
+
+        Usuario usuario = optUsuario.get();
+
+        boolean valid = encoder.matches(senha, usuario.getSenha());
+
+        HttpStatus status = (valid) ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
+
+        return ResponseEntity.status(status).body(valid);
+
+    }
+
+     */
 }
 
 
